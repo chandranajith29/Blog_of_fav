@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+</head>
+<style>
+    .one{
+        position: relative;
+        margin: 50px 200px 50px 200px;
+    }
+
+</style>
+<body>
+    <div class="one">
+        {% for i in posts %}
+        <img src="{{i.photos.url}}" alt="" width="350px" height="250px">
+        <h1> <a href="{% url 'details' i.pk %}">{{i.title}}</a></h1>
+        <h5>created_on : {{i.created_on}}</h5>| Category : <a href="">{{i.categories}}</a>
+        <h5>updated_on : {{i.updated_on}}</h5>
+        <p>{{i.body | slice:":200"}}</p>
+        <div></div>
+        <div></div>
+        {% endfor %}
+    </div>
+</body>
+</html>

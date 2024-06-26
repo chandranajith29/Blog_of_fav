@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    {% load static %}
+</head>
+    
+<style>
+    .one{
+        position: relative;
+        margin: 50px 200px 50px 200px;
+    }
+
+</style>
+<body>
+    <div class="one">
+        <img src="{{i.photos.url}}" alt="" width="350px" height="250px">
+        <h1> <a href="">{{i.title}}</a></h1>
+        <h5>created_on : {{i.created_on}}</h5>| Category : <a href="">{{i.categories}}</a>
+        <h5>updated_on : {{i.updated_on}}</h5>
+        <p>{{i.body}}</p>
+
+        <h2>Write Comments :</h2>
+        <form action="{% url 'details' i.id %}" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter the name " name="auth_name" style="width: 200px; height: 50px;"><br>
+            <input type="text" placeholder="lets Comment" name="post_Comment" style="width: 500px; height: 200px;padding-bottom:100px; margin-top: 30px;"><br>
+
+            <input type="submit" style="margin-top: 20px;">
+        </form>
+        <h1>Comments :</h1>
+        {% for comments in comments %}
+        <h5>{{comments.created_on}}</h5>| <h3>Name : {{comments.author}}</h3>
+        <h4>{{comments.body}}</h4>
+        {% endfor %}
+
+    </div>
+</body>
+</html>
